@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>喫茶 やすらぎ｜昭和から続く、ほっとする一杯。</title>
+  <meta name="description" content="昭和から続く、懐かしくてあたたかい町の喫茶店。コーヒー、プリン、ナポリタンなど定番メニューでお迎えします。" />
+  <style>
+    /* ===== Theme ===== */
+    :root{
+      --bg:#efe7d6; /* ページ地色 */
+      --bg-soft:#e6dcc8;
+      --card:#fff;   /* カード色 */
+      --ink:#2c241e; /* 文字色 */
+      --muted:#6f635b;
+      --line:#e9e0d2;
+      --accent:#8b5e3c; /* 見出しやボタンのアクセント */
+      --shadow:0 6px 18px rgba(0,0,0,.08), 0 2px 6px rgba(0,0,0,.05);
+      --radius:14px;
+    }
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;background:var(--bg);color:var(--ink);line-height:1.8}
+    img{max-width:100%;height:auto;display:block;border-radius:12px}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1120px;margin:auto;padding:0 20px}
+
+    /* ===== Header ===== */
+    header{position:sticky;top:0;background:rgba(239,231,214,.8);backdrop-filter:saturate(140%) blur(6px);border-bottom:1px solid var(--line);z-index:50}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .brand{font-weight:700;letter-spacing:.12em}
+    .brand small{display:block;font-weight:500;letter-spacing:.2em;color:var(--muted);font-size:10px;margin-top:-6px}
+    .nav a{padding:10px 12px;border-radius:10px}
+    .nav a:hover{background:#fff2}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--accent);color:#fff;padding:10px 16px;border-radius:999px;box-shadow:var(--shadow)}
+
+    /* ===== Hero ===== */
+    .hero{position:relative;min-height:62vh;display:grid;place-items:center;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1453614512568-c4024d13c247?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;filter:contrast(1.1) saturate(1.05)}
+    .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom, rgba(20,14,8,.55), rgba(20,14,8,.35) 40%, rgba(239,231,214,.85));}
+    .hero-inner{position:relative;text-align:center;color:#fff;padding:64px 20px}
+    .hero h1{font-size:clamp(28px,6vw,48px);letter-spacing:.18em;margin:0 0 10px}
+    .hero p{margin:0 0 22px;color:#f4ede6}
+
+    /* ===== Sections ===== */
+    section{padding:80px 0}
+    .section-title{font-size:clamp(20px,3.2vw,28px);text-align:center;margin:0 0 26px;letter-spacing:.22em}
+    .section-title + .underline{width:56px;height:2px;background:var(--accent);margin:10px auto 34px;border-radius:2px}
+
+    /* ===== About ===== */
+    .about-wrap{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px}
+    .about-head{display:flex;gap:18px;align-items:center}
+    .avatar{width:72px;height:72px;border-radius:999px;overflow:hidden;flex:0 0 auto}
+    .about-body{color:var(--muted)}
+
+    /* ===== Menu cards ===== */
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+    .card-body{padding:14px 16px}
+    .card-title{font-weight:700;margin:0 0 6px}
+    .price{margin-left:8px;color:var(--muted);font-weight:600;font-size:14px}
+    .note{margin-top:14px;color:var(--muted);text-align:center}
+
+    /* ===== Info grid ===== */
+    .info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .info{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+    .info h4{margin:.2rem 0 0.4rem;font-size:16px}
+    .info p{margin:0;color:var(--muted)}
+    .tel-block{display:flex;gap:10px;align-items:center;margin-top:8px}
+
+    /* ===== Access ===== */
+    .map-card{background:linear-gradient(135deg,#b8946b,#cbb08f,#b28b64);border-radius:var(--radius);padding:12px;border:1px solid var(--line);box-shadow:var(--shadow)}
+    .map-embed{width:100%;height:360px;border:0;border-radius:10px}
+    .access-ways{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:16px}
+
+    /* ===== Footer ===== */
+    footer{background:#5a4a3c;color:#efe7d6;padding:46px 0 26px;margin-top:40px}
+    .footer-icons{display:flex;gap:14px;justify-content:center;margin:12px 0}
+    .tiny{opacity:.85;font-size:13px}
+
+    /* ===== Responsive ===== */
+    @media (max-width:900px){
+      .cards{grid-template-columns:repeat(2,1fr)}
+      .info-grid{grid-template-columns:1fr}
+      .access-ways{grid-template-columns:1fr}
+    }
+    @media (max-width:640px){
+      .cards{grid-template-columns:1fr}
+      .about-head{flex-direction:column;align-items:flex-start}
+      section{padding:60px 0}
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== Header ===== -->
+  <header>
+    <div class="container nav">
+      <div class="brand">喫茶 やすらぎ<small>昭和から続く、ほっとする一杯。</small></div>
+      <nav>
+        <a href="#about">お店について</a>
+        <a href="#menu">メニュー</a>
+        <a href="#info">営業情報</a>
+        <a href="#access">アクセス</a>
+      </nav>
+      <a class="btn" href="tel:03-1234-5678" aria-label="電話をかける">予約・お問い合わせ</a>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero" aria-label="店内の雰囲気写真">
+    <div class="hero-inner">
+      <h1>喫茶 やすらぎ</h1>
+      <p>昭和から続く、ほっとする一杯。</p>
+      <a class="btn" href="#menu">おすすめを見る</a>
+    </div>
+  </section>
+
+  <!-- ===== About ===== -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">お店について</h2>
+      <div class="underline"></div>
+      <article class="about-wrap" aria-label="マスターの紹介">
+        <div class="about-head">
+          <div class="avatar">
+            <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=256&h=256&fit=crop&auto=format" alt="コーヒーを淹れるバリスタの手元" />
+          </div>
+          <div>
+            <h3 style="margin:0 0 4px">マスター すずきⅩ</h3>
+            <p class="about-body">昭和の創業以来、地域の皆さまに愛されてきた小さな喫茶店です。マスター一人で丁寧にお淹れする一杯、手作りの昔ながらのプリン、どこか懐かしいナポリタンをご用意しています。どうぞ肩の力をぬいてお立ち寄りください。</p>
+          </div>
+        </div>
+        <p class="about-body" style="margin:14px 0 0">〜 マスターより 〜</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== Menu ===== -->
+  <section id="menu" style="background:var(--bg-soft)">
+    <div class="container">
+      <h2 class="section-title">メニュー</h2>
+      <div class="underline"></div>
+
+      <div class="cards" role="list">
+        <!-- 1: コーヒー -->
+        <article class="card" role="listitem">
+          <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1200&auto=format&fit=crop" alt="湯気の立つコーヒー" />
+          <div class="card-body">
+            <h3 class="card-title">ブレンドコーヒー <span class="price">¥450</span></h3>
+            <p class="about-body">自家焙煎豆で丁寧に抽出。深いコクと香りが自慢です。</p>
+          </div>
+        </article>
+        <!-- 2: プリン -->
+        <article class="card" role="listitem">
+          <img src="https://images.unsplash.com/photo-1589935447067-5534c1d6b5b4?q=80&w=1200&auto=format&fit=crop" alt="手作りプリン" />
+          <div class="card-body">
+            <h3 class="card-title">手作りプリン <span class="price">¥380</span></h3>
+            <p class="about-body">ほろ苦いカラメルと、なめらかな食感の昔ながらのプリン。</p>
+          </div>
+        </article>
+        <!-- 3: ナポリタン -->
+        <article class="card" role="listitem">
+          <img src="https://images.unsplash.com/photo-1604909052743-88e0b6a26c9b?q=80&w=1200&auto=format&fit=crop" alt="ナポリタンの調理" />
+          <div class="card-body">
+            <h3 class="card-title">ナポリタン <span class="price">¥780</span></h3>
+            <p class="about-body">喫茶店といえばコレ。鉄板で香ばしく仕上げた人気メニュー。</p>
+          </div>
+        </article>
+        <!-- 4: ミックスサンド -->
+        <article class="card" role="listitem">
+          <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1200&auto=format&fit=crop" alt="ミックスサンド" />
+          <div class="card-body">
+            <h3 class="card-title">ミックスサンド <span class="price">¥650</span></h3>
+            <p class="about-body">パン工房の食パンでつくる、やさしい味わいの定番サンド。</p>
+          </div>
+        </article>
+        <!-- 5: クリームソーダ -->
+        <article class="card" role="listitem">
+          <img src="https://images.unsplash.com/photo-1534353432358-79a9dc9d1054?q=80&w=1200&auto=format&fit=crop" alt="クリームソーダ" />
+          <div class="card-body">
+            <h3 class="card-title">クリームソーダ <span class="price">¥500</span></h3>
+            <p class="about-body">シュワっと爽やか、写真映えもする人気のドリンク。</p>
+          </div>
+        </article>
+      </div>
+
+      <p class="note">※ この他のメニューもご用意しています。お気軽にお尋ねください。</p>
+    </div>
+  </section>
+
+  <!-- ===== Info ===== -->
+  <section id="info">
+    <div class="container">
+      <h2 class="section-title">営業情報</h2>
+      <div class="underline"></div>
+      <div class="info-grid">
+        <div class="info">
+          <h4>住所</h4>
+          <p>〒123-4567 東京都〇〇区〇〇1-2-3 ○○パーク1F</p>
+        </div>
+        <div class="info">
+          <h4>電話番号</h4>
+          <div class="tel-block">
+            <a class="btn" href="tel:03-1234-5678">03-1234-5678 に電話</a>
+          </div>
+        </div>
+        <div class="info">
+          <h4>営業時間</h4>
+          <p>9:00 〜 18:00（ラストオーダー 17:30）</p>
+        </div>
+        <div class="info">
+          <h4>定休日</h4>
+          <p>毎週火曜／第3水曜</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Access ===== -->
+  <section id="access" style="background:var(--bg-soft)">
+    <div class="container">
+      <h2 class="section-title">アクセス</h2>
+      <div class="underline"></div>
+
+      <div class="map-card">
+        <!-- 住所が確定したら q= を置き換えてください。APIキー不要の埋め込み -->
+        <iframe class="map-embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Tokyo%20Station&output=embed" title="Googleマップ"></iframe>
+      </div>
+
+      <div class="access-ways">
+        <div class="info">
+          <h4>電車でお越しの方</h4>
+          <p class="about-body">〇〇線「〇〇駅」北口から徒歩8分。改札を出て右、〇〇通りを直進。</p>
+        </div>
+        <div class="info">
+          <h4>お車でお越しの方</h4>
+          <p class="about-body">近隣に提携駐車場あり（1時間無料）。コインパーキングも多数。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <div class="container" style="text-align:center">
+      <strong>喫茶 やすらぎ</strong>
+      <div class="footer-icons" aria-label="SNSリンク">
+        <a href="#" aria-label="Facebook">🅕</a>
+        <a href="#" aria-label="Instagram">◎</a>
+        <a href="#" aria-label="X(Twitter)">𝕏</a>
+      </div>
+      <div class="tiny">〒123-4567 東京都〇〇区〇〇1-2-3 ○○パーク1F / TEL: 03-1234-5678</div>
+      <div class="tiny">© 2025 喫茶 やすらぎ. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- ===== Small JS: スクロール時のヘッダー影など（不要なら削除OK） ===== -->
+  <script>
+    const header = document.querySelector('header');
+    addEventListener('scroll', () => {
+      header.style.boxShadow = (scrollY > 8) ? 'var(--shadow)' : 'none';
+    });
+  </script>
+</body>
+</html>
+
